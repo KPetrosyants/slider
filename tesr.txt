@@ -1,0 +1,109 @@
+const sliderFront = new Swiper(".slider-front", {
+  // Optional parameters
+  direction: "horizontal",
+  loop: true,
+  slidesPerView: "auto",
+  spaceBetween: 26,
+
+  // If we need pagination
+  pagination: {
+    el: ".slider-front-pagination",
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: ".slider-front-button-next",
+    prevEl: ".slider-front-button-prev",
+  },
+});
+const sliderFrontMobile = new Swiper(".slider-front.slider-front-mobile", {
+  direction: "horizontal",
+  loop: true,
+  grabCursor: true,
+  slidesPerView: 1.3,
+  effect: "creative",
+  creativeEffect: {
+    prev: {
+      translate: ["20px", 0, 0],
+    },
+    next: {
+      translate: ["20px", 0, 0],
+    },
+    progressMultiplier: 1,
+    limitProgress: 9,
+  },
+  pagination: {
+    el: ".slider-front-pagination",
+  },
+});
+
+const sliderFrontDOM = document.querySelector(".slider-front");
+const slidersFront = sliderFrontDOM.querySelectorAll(
+  ".slider-front .swiper-slide"
+);
+const sliderFrontActiveSlide = sliderFrontDOM.querySelector(
+  ".swiper-slide-active"
+);
+const slidersBack = document.querySelectorAll(".slider-back .swiper-slide");
+
+sliderFront[0].on("beforeTransitionStart", function () {
+  slidersFront.forEach((slide, index) => {
+    if (slide.classList.contains("swiper-slide-active")) {
+      console.log(slide);
+      slidersBack.forEach((slide) => {
+        slide.classList.remove("active");
+      });
+      slidersBack[index].classList.add("active");
+    }
+  });
+});
+sliderFront[1].on("beforeTransitionStart", function () {
+  slidersFront.forEach((slide, index) => {
+    if (slide.classList.contains("swiper-slide-active")) {
+      console.log(slide);
+      slidersBack.forEach((slide) => {
+        slide.classList.remove("active");
+      });
+      slidersBack[index].classList.add("active");
+    }
+  });
+});
+
+// var swiper = new Swiper(".mySwiper", {
+//     grabCursor: true,
+//     slidesPerView: 1.2,
+//     effect: "creative",
+//     creativeEffect: {
+//       prev: {
+//         translate: ["20px", 0, 0],
+//       },
+//       next: {
+//         translate: ["20px", 0, 0],
+//       },
+//       progressMultiplier: 1,
+//       limitProgress: 9,
+//     },
+//     // Navigation arrows
+//     navigation: {
+//       nextEl: ".swiper-button-next",
+//       prevEl: ".swiper-button-prev",
+//     },
+//   });
+
+//   breakpoints: {
+//     // when window width is >= 320px
+//     320: {
+//       slidesPerView: 2,
+//       spaceBetween: 20,
+//     },
+//     // when window width is >= 480px
+//     480: {
+//       slidesPerView: 3,
+//       spaceBetween: 30,
+//     },
+//     // when window width is >= 640px
+//     640: {
+//       slidesPerView: 4,
+//       spaceBetween: 40,
+//     },
+//   },
